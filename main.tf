@@ -1,3 +1,25 @@
+terraform {
+  required_version = ">= 1, < 2.0"
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "3.74.0"
+    }
+    hcp = {
+      source = "hashicorp/hcp"
+      version = "~> 0.47.0"
+    } 
+  }
+
+  cloud {
+    organization = "demo-lab-hashicorp"
+
+    workspaces {
+      name = "aws-basic-nginx"
+    }
+  }
+}
+
 provider "hcp" {}
 
 provider "aws" {
@@ -18,8 +40,9 @@ data "hcp_packer_image" "ubuntu_nginx" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = data.hcp_packer_image.ubuntu_us_east_2.cloud_image_id
+  ami           = data.hcp_packer_image.ubuntu_nginx.cloud_image_id
   instance_type = "t2.micro"
+  
   tags = {
     Name = "acme-demo-app"
   }
@@ -34,5 +57,5 @@ output "ubuntu_nginx_apsoutheast2" {
 }
 
 output "ubuntu_nginx_region" {
-  value = data.hcp_packer_image.region
+  value = data.hcp_packer_image.ubuntu_nginx.region
 }
