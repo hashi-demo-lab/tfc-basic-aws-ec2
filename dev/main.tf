@@ -31,12 +31,12 @@ data "hcp_packer_iteration" "ubuntu" {
   channel     = "production"
 }
 
-
 data "hcp_packer_image" "ubuntu_nginx" {
   bucket_name    = "ubuntu-nginx"
   cloud_provider = "aws"
   iteration_id   = data.hcp_packer_iteration.ubuntu.ulid
   region         = var.region
+
 }
 
 resource "aws_instance" "app_server" {
@@ -44,6 +44,11 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
   subnet_id     = var.subnet_pub1
   vpc_security_group_ids =  var.sg_attach
+
+  root_block_device {
+    encrypted = true
+  }
+
 
   tags = {
     Name = "acme-demo-app"
