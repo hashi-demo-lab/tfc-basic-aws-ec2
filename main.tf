@@ -43,6 +43,7 @@ resource "aws_instance" "app_server" {
   ami           = data.hcp_packer_image.ubuntu_nginx.cloud_image_id
   instance_type = "t2.micro"
   subnet_id     = var.subnet_pub1
+  vpc_security_group_ids =  var.sg_attach
 
   tags = {
     Name = "acme-demo-app"
