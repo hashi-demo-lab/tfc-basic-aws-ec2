@@ -11,5 +11,5 @@ variable "subnet_pub1" {
 variable "sg_attach" {
   type        = list(any)
   description = "Security Groups to attach"
-  default     = ["sg-03f7982a72a0ab724", "sg-03c5de6a05e835a26"]
+  default = ["sg-03f7982a72a0ab724", "sg-03c5de6a05e835a26"]
 }
