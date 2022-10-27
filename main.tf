@@ -2,13 +2,13 @@ terraform {
   required_version = ">= 1, < 2.0"
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "3.74.0"
     }
     hcp = {
-      source = "hashicorp/hcp"
+      source  = "hashicorp/hcp"
       version = "~> 0.47.0"
-    } 
+    }
   }
 
   cloud {
@@ -29,7 +29,7 @@ provider "aws" {
 data "hcp_packer_iteration" "ubuntu" {
   bucket_name = "ubuntu-nginx"
   channel     = "production"
-} 
+}
 
 
 data "hcp_packer_image" "ubuntu_nginx" {
@@ -42,7 +42,8 @@ data "hcp_packer_image" "ubuntu_nginx" {
 resource "aws_instance" "app_server" {
   ami           = data.hcp_packer_image.ubuntu_nginx.cloud_image_id
   instance_type = "t2.micro"
-  
+  subnet_id     = var.subnet_pub1
+
   tags = {
     Name = "acme-demo-app"
   }
