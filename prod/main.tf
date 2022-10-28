@@ -27,7 +27,7 @@ provider "aws" {
 }
 
 data "hcp_packer_iteration" "ubuntu" {
-  bucket_name = "ubuntu-nginx"
+  bucket_name = "aws-ubuntu-nginx"
   channel     = "production"
 }
 
