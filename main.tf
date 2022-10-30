@@ -45,6 +45,8 @@ resource "aws_instance" "app_server" {
   subnet_id              = var.subnet_pub1
   vpc_security_group_ids = var.sg_attach
 
+  user_data = var.user_data
+
   tags = {
     Name = "acme-demo-app"
   }

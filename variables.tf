@@ -13,3 +13,15 @@ variable "sg_attach" {
   description = "Security Groups to attach"
   default     = ["sg-03f7982a72a0ab724", "sg-03c5de6a05e835a26"]
 }
+
+variable "user_data" {
+  type = string
+  default = <<EOF
+                #!/bin/bash
+                "clone https://github.com/hashicorp-demo-lab/demo-static-content.git;
+                cd /usr/share/nginx/html;
+                sudo cp -r '/demo-static-content .';
+                sudo systemctl restart nginx"
+              EOF
+
+}
