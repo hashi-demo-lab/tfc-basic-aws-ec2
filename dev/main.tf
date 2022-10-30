@@ -27,12 +27,12 @@ provider "aws" {
 }
 
 data "hcp_packer_iteration" "ubuntu" {
-  bucket_name = "ubuntu-nginx"
+  bucket_name = "aws-ubuntu-nginx"
   channel     = "production"
 }
 
 data "hcp_packer_image" "ubuntu_nginx" {
-  bucket_name    = "ubuntu-nginx"
+  bucket_name    = "aws-ubuntu-nginx"
   cloud_provider = "aws"
   iteration_id   = data.hcp_packer_iteration.ubuntu.ulid
   region         = var.region
