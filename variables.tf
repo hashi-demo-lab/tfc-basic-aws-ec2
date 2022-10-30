@@ -18,11 +18,11 @@ variable "user_data" {
   type    = string
   default = <<EOF
                 #!/bin/bash
-                "cd /tmp"
-                "git clone https://github.com/hashicorp-demo-lab/demo-static-content.git;
+                cd /tmp
+                git clone https://github.com/hashicorp-demo-lab/demo-static-content.git;
                 cd /var/html/www;
                 sudo cp -r /tmp/demo-static-content/. .;
                 sudo systemctl restart nginx;
-              EOF
+        EOF
 
 }
