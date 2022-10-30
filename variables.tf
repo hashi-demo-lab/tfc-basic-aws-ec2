@@ -20,7 +20,7 @@ variable "user_data" {
                 #!/bin/bash
                 cd /tmp
                 git clone https://github.com/hashicorp-demo-lab/demo-static-content.git;
-                cd /var/html/www;
+                cd /var/www/html;
                 sudo cp -r /tmp/demo-static-content/. .;
                 sudo systemctl restart nginx;
         EOF
