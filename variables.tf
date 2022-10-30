@@ -16,13 +16,13 @@ variable "sg_attach" {
 
 variable "user_data" {
   type    = string
-  default = <<EOF
-                #!/bin/bash
-                cd /tmp
-                git clone https://github.com/hashicorp-demo-lab/demo-static-content.git;
-                cd /var/www/html;
-                sudo cp -r /tmp/demo-static-content/. .;
-                sudo systemctl restart nginx;
-        EOF
-
+  default = <<-EOF
+    #cloud-config
+    runcmd:
+    - cd /tmp
+    - git clone https://github.com/hashicorp-demo-lab/demo-static-content.git;
+    - cd /var/www/html;
+    - sudo cp -r /tmp/demo-static-content/. .;
+    - sudo systemctl restart nginx;
+    EOF
 }
