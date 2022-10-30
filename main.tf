@@ -11,9 +11,6 @@ terraform {
     }
   }
 
-  cloud {
-    organization = "demo-lab-hashicorp"
-  }
 }
 
 provider "hcp" {}
