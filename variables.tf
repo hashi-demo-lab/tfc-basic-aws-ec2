@@ -15,7 +15,7 @@ variable "sg_attach" {
 }
 
 variable "user_data" {
-  type = string
+  type    = string
   default = <<EOF
                 #!/bin/bash
                 "clone https://github.com/hashicorp-demo-lab/demo-static-content.git;

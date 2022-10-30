@@ -13,10 +13,6 @@ terraform {
 
   cloud {
     organization = "demo-lab-hashicorp"
-
-    workspaces {
-      name = "aws-basic-nginx"
-    }
   }
 }
 
