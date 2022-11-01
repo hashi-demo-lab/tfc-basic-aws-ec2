@@ -34,22 +34,20 @@ data "hcp_packer_image" "ubuntu_nginx" {
 
 resource "aws_instance" "app_server" {
   ami                    = data.hcp_packer_image.ubuntu_nginx.cloud_image_id
-  instance_type          = "t2.micro"
+  instance_type          = var.instance_type
   subnet_id              = var.subnet_pub1
   vpc_security_group_ids = var.sg_attach
 
   user_data = var.user_data
 
-  tags = {
-    Name = "acme-demo-app"
-  }
+  tags = var.tags
 }
 
 output "ubuntu_iteration" {
   value = data.hcp_packer_iteration.ubuntu
 }
 
-output "ubuntu_nginx_apsoutheast2" {
+output "ubuntu_nginx_image" {
   value = data.hcp_packer_image.ubuntu_nginx
 }
 
@@ -58,5 +56,9 @@ output "ubuntu_nginx_region" {
 }
 
 output "public_ip" {
-  value = resource.aws_instance.app_server 
+  value = resource.aws_instance.app_server.public_ip 
+}
+
+output "instance" {
+  value = resource.aws_instance.app_server
 }

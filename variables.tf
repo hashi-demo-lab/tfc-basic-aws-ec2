@@ -14,6 +14,20 @@ variable "sg_attach" {
   default     = ["sg-03f7982a72a0ab724", "sg-03c5de6a05e835a26"]
 }
 
+variable "instance_type" {
+  type = string
+  description = "aws instance type"
+  default = "t2.micro"  
+}
+
+variable "tags" {
+  type = map(string)
+  description = "aws resource tags"
+  default = {
+    Name = "acme-demo-app"
+  }
+}
+
 variable "user_data" {
   type    = string
   default = <<-EOF
