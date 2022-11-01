@@ -56,3 +56,7 @@ output "ubuntu_nginx_apsoutheast2" {
 output "ubuntu_nginx_region" {
   value = data.hcp_packer_image.ubuntu_nginx.region
 }
+
+output "public_ip" {
+  value = resource.aws_instance.app_server 
+}
